@@ -15,6 +15,7 @@ spec:
 
   destinations:
   - namespace: nginx-dev
+    server: "*"
     name: rancher-desktop
   - namespace: nginx-prod
     name: gke-cluster

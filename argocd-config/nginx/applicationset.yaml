@@ -9,7 +9,6 @@ spec:
       selector:
         matchLabels:
           env: dev
-          argocd.argoproj.io/secret-type: cluster
       values:
         environment: "{{ metadata.labels.env }}"
   template:
@@ -25,4 +24,6 @@ spec:
       destination:
         name: "{{ name }}"
         namespace: "nginx-{{ values.environment }}"
-    
+      syncPolicy:
+        automated: 
+          prune: true
