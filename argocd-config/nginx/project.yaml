@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: nginx-app-project
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Nginx project
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+  - 'https://github.com/TanguyBaudrin/argocd-demo.git'
+
+  destinations:
+  - namespace: nginx-dev
+    name: rancher-desktop
+  - namespace: nginx-prod
+    name: gke-cluster

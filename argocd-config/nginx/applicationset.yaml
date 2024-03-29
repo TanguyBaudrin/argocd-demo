@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          env: dev
+          argocd.argoproj.io/secret-type: cluster
+      values:
+        environment: "{{ metadata.labels.env }}"
+  template:
+    metadata:
+      name: "nginx-{{ values.environment }}"
+      namespace: argocd
+    spec:
+      project: nginx-app-project
+      source:
+        repoURL: https://github.com/TanguyBaudrin/argocd-demo.git
+        targetRevision: HEAD
+        path: "nginx-app/{{ values.environment }}"
+      destination:
+        name: "{{ name }}"
+        namespace: "nginx-{{ values.environment }}"
+    
