@@ -6,9 +6,6 @@ metadata:
 spec:
   generators:
   - clusters:
-      selector:
-        matchLabels:
-          env: dev
       values:
         environment: "{{ metadata.labels.env }}"
   template:
