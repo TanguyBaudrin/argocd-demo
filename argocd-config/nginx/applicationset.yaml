@@ -5,22 +5,22 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters:
-      values:
-        environment: "{{ metadata.labels.env }}"
+    - clusters:
+        values:
+          environment: "{{metadata.labels.env}}"
   template:
     metadata:
-      name: "nginx-{{ values.environment }}"
+      name: "nginx-{{values.environment}}"
       namespace: argocd
     spec:
       project: nginx-app-project
       source:
         repoURL: https://github.com/TanguyBaudrin/argocd-demo.git
         targetRevision: HEAD
-        path: "nginx-app/{{ values.environment }}"
+        path: "nginx-app/{{values.environment}}"
       destination:
-        name: "{{ name }}"
-        namespace: "nginx-{{ values.environment }}"
+        name: "{{name}}"
+        namespace: "nginx-{{values.environment}}"
       syncPolicy:
-        automated: 
+        automated:
           prune: true

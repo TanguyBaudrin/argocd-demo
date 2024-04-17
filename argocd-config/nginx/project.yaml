@@ -11,11 +11,8 @@ spec:
     - group: "*"
       kind: "*"
   sourceRepos:
-  - 'https://github.com/TanguyBaudrin/argocd-demo.git'
+    - "https://github.com/TanguyBaudrin/argocd-demo.git"
 
   destinations:
-  - namespace: nginx-dev
-    server: "*"
-    name: rancher-desktop
-  - namespace: nginx-prod
-    name: gke-cluster
+    - namespace: nginx-dev
+      server: "*"
